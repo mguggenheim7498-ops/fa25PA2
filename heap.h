@@ -23,9 +23,19 @@ struct MinHeap {
     }
 
     int pop(int weightArr[]) {
-        // TODO: remove and return smallest index
+        // remove and return smallest index
         // Replace root with last element, then call downheap()
-        return -1; // placeholder
+        if (size == 0) return -1; // heap is empty
+        
+        int root = data[0];
+        data[0] = data[size - 1];
+        size--;
+        
+        if (size > 0) {
+            downheap(0, weightArr);
+        }
+        
+        return root;
     }
 
     void upheap(int pos, int weightArr[]) {
@@ -50,8 +60,33 @@ struct MinHeap {
 
 
     void downheap(int pos, int weightArr[]) {
-        // TODO: swap parent downward while larger than any child
-
+        // swap parent downward while larger than any child
+        while (true) {
+            int leftChild = 2 * pos + 1;
+            int rightChild = 2 * pos + 2;
+            int smallest = pos;
+            
+            // Find the smallest among parent and children
+            if (leftChild < size && weightArr[data[leftChild]] < weightArr[data[smallest]]) {
+                smallest = leftChild;
+            }
+            if (rightChild < size && weightArr[data[rightChild]] < weightArr[data[smallest]]) {
+                smallest = rightChild;
+            }
+            
+            // If parent is already smallest, we're done
+            if (smallest == pos) {
+                break;
+            }
+            
+            // Swap parent with smallest child
+            int temp = data[pos];
+            data[pos] = data[smallest];
+            data[smallest] = temp;
+            
+            // Move down to the swapped position
+            pos = smallest;
+        }
     }
 };
 

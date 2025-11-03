@@ -66,7 +66,7 @@ struct MinHeap {
             int rightChild = 2 * pos + 2;
             int smallest = pos;
             
-            // Find the smallest among parent and children
+            // find the smallest in parent/children
             if (leftChild < size && weightArr[data[leftChild]] < weightArr[data[smallest]]) {
                 smallest = leftChild;
             }
@@ -74,17 +74,17 @@ struct MinHeap {
                 smallest = rightChild;
             }
             
-            // If parent is already smallest, we're done
+            // if parent is already smallest breka
             if (smallest == pos) {
                 break;
             }
             
-            // Swap parent with smallest child
+            // swaps parent with smallest child
             int temp = data[pos];
             data[pos] = data[smallest];
             data[smallest] = temp;
             
-            // Move down to the swapped position
+            // move down to the swapped position
             pos = smallest;
         }
     }

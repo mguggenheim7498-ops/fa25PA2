@@ -148,7 +148,7 @@ void generateCodes(int root, string codes[]) {
         }
     }
 
-    cout << "Generated binary codes successfully.\n";
+    cout << "binary codes made \n";
 }
 
 

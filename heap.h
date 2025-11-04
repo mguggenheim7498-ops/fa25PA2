@@ -25,7 +25,8 @@ struct MinHeap {
     int pop(int weightArr[]) {
         // remove and return smallest index
         // Replace root with last element, then call downheap()
-        if (size == 0) return -1; // heap is empty
+        // if heap is empty
+        if (size == 0) return -1; 
         
         int root = data[0];
         data[0] = data[size - 1];
@@ -44,6 +45,8 @@ struct MinHeap {
             int parent;
             parent = (pos - 1) / 2;
 
+        // if current nodes weight is smaller than its parent
+        // swap them to maintain minheap
             if (weightArr[data[pos]] < weightArr[data[parent]]) {
             int temp = data[pos];
             data[pos] = data[parent];
@@ -52,6 +55,7 @@ struct MinHeap {
             // moving up to the parent 
             pos = parent;
         } 
+        // if not smaller than parent then stop
         else {
             break;
                 }

@@ -119,17 +119,38 @@ int buildEncodingTree(int nextFree) {
 }
 
 
-// Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
-    if (root == -1) return;
+    //if no root node
+    if (root == -1) 
+    return;
 
     stack<pair<int, string>> st;
     st.push({root, ""});
-
+    // while not empty stack
     while (!st.empty()) {
+        auto [node, code] = st.top();
+        st.pop();
+
+        int left = leftArr[node];
+        int right = rightArr[node];
+
+        // if leaf node
+        if (left == -1 && right == -1) {
+            char ch = charArr[node];
+            if (ch >= 'a' && ch <= 'z') {
+                codes[ch - 'a'] = code;
+            }
+        } 
+        else {
+            //push right first so left node done first
+            if (right != -1) st.push({right, code + "1"});
+            if (left != -1) st.push({left, code + "0"});
+        }
     }
-        
+
+    cout << "Generated binary codes successfully.\n";
 }
+
 
 
 // Step 5: Print table and encoded message

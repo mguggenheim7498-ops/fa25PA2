@@ -114,18 +114,23 @@ int buildEncodingTree(int nextFree) {
 
     // make last node the root
     int root = heap.pop(weightArr);
-    cout << "--test--\n";
+    cout << "built encoding tree \n";
     return root;
 }
 
 
 // Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
-    // TODO:
-    // Use stack<pair<int, string>> to simulate DFS traversal.
-    // Left edge adds '0', right edge adds '1'.
-    // Record code when a leaf node is reached.
+    if (root == -1) return;
+
+    stack<pair<int, string>> st;
+    st.push({root, ""});
+
+    while (!st.empty()) {
+    }
+        
 }
+
 
 // Step 5: Print table and encoded message
 void encodeMessage(const string& filename, string codes[]) {
